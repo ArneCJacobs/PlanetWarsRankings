@@ -5,9 +5,11 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "dash>=3.0.4",
     "ipython>=8.36.0",
     "orjson>=3.10.18",
     "pandas>=2.2.3",
+    "plotly[express]>=6.1.2",
     "pyarrow>=20.0.0",
     "pydantic>=2.11.5",
     "pyright>=1.1.401",

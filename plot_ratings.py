@@ -1,21 +1,45 @@
-import seaborn as sns 
+from dash import Dash, dcc, html, Input, Output
+import plotly.graph_objects as go
+import plotly.express as px
+import plotly.io as pio
 import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib
+
 
 def main():
     # matplotlib.use("nbagg")
-    matplotlib.use("WebAgg")
     df = pd.read_parquet("ratings.parquet")
 
-    sns.lineplot(
-        data=df,
-        x="timestamp",
-        y="rating_mu",
-        hue="id",
-    )
+    app = Dash(__name__)
 
-    plt.show()
+    app.layout = html.Div([
+        html.H4('Interactive color selection with simple Dash example'),
+        html.P("Select theme:"),
+        dcc.Dropdown(
+            id="dropdown",
+            options=list(pio.templates),
+            value='Gold',
+            clearable=False,
+        ),
+        dcc.Graph(id="graph"),
+    ])
+
+
+    @app.callback(
+        Output("graph", "figure"),
+        Input("dropdown", "value"),
+    )
+    def display_color(template):
+        fig = px.line(
+            df,
+            x="timestamp",
+            y="rating_mu",
+            color="id",
+            template=template,
+        )
+        return fig
+
+
+    app.run(debug=True)
 
 
 if __name__ == "__main__":
