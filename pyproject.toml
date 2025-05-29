@@ -1,0 +1,22 @@
+[project]
+name = "planetwarsrankings"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "ipython>=8.36.0",
+    "orjson>=3.10.18",
+    "pandas>=2.2.3",
+    "pyarrow>=20.0.0",
+    "pydantic>=2.11.5",
+    "pyright>=1.1.401",
+    "requests>=2.32.3",
+    "seaborn>=0.13.2",
+    "tornado>=6.5.1",
+    "tqdm>=4.67.1",
+    "trueskill>=0.4.5",
+]
+
+[tool.pyright]
+typeCheckingMode = "basic"
