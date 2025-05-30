@@ -17,17 +17,21 @@ class Player(pydantic.BaseModel):
     def id(self):
         return f"{self.owner_id}-{self.bot_name}"
 
+
+class Map(pydantic.BaseModel):
+    name: str
+
 class Match(pydantic.BaseModel):
     id: int
     timestamp: datetime.datetime 
     state: str
     players: list[Player]
     winner: int | None
+    map: Map
 
 def main():
-    with open("matches.json", "r") as f:
-        matches = orjson.loads(f.read())
-        matches: list[Match] = [Match.model_validate(match) for match in matches]
+    with open("matches.jsonl", "r") as f:
+        matches: list[Match] = [Match.model_validate(orjson.loads(line)) for line in f if line.strip()]
 
     matches.sort(key=lambda x: x.timestamp)
 
