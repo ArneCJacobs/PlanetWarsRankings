@@ -11,6 +11,7 @@ def main():
     #pretty print 
     print(latest_ratings[['bot_name', 'rating_mu']].to_string(index=False))
 
+    latest_ratings.to_csv("latest_ratings.csv", index=False)
 
 
 if __name__ == "__main__":
