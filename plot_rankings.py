@@ -32,7 +32,7 @@ def main():
             df,
             x="timestamp",
             y="rating_mu",
-            color="id",
+            color="bot_name",
             template=template,
         )
         return fig

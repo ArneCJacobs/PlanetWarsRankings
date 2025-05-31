@@ -9,7 +9,7 @@ def main():
     # sort by ratings 
     latest_ratings = latest_ratings.sort_values(by='rating_mu', ascending=False)
     #pretty print 
-    print(latest_ratings[['id', 'rating_mu']].to_string(index=False))
+    print(latest_ratings[['bot_name', 'rating_mu']].to_string(index=False))
 
 
 
